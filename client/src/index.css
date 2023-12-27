@@ -1,0 +1,403 @@
+/* Meyer Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --accent-blue: #3188ED; 
+  --off-black: #505050;
+  --off-black-darker: #131D2B;
+
+  /* Bounding Box Colors */
+  --impacted: #43AA8B;
+  --caries: #FF6F59;
+  --deep-caries: #E9153C;
+  --periapical-lesion: #9649CB;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-width: 320px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: linear-gradient(146deg, #EBEBEB 14.28%, #FFF 90.31%);
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 0.9rem;
+}
+
+h3 {
+  font-size: 0.8em;
+}
+
+p {
+  font-size: 0.6rem;
+}
+
+button {
+  margin: 1em 2em 0 2em;
+  padding: 1em;
+
+  font-size: 0.4em;
+
+  border-radius: 242px;
+  border-style: none;
+
+  color: white;
+  background: #3188ED;
+  opacity: 1;
+
+  cursor: pointer;
+  transition: opacity 0.3s;
+
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+button:hover {
+  opacity: 0.8;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.10);
+}
+
+button:disabled {
+  background: #dddddd;
+  cursor: not-allowed;
+}
+
+.off-black {
+  color: var(--off-black);
+}
+
+.blue {
+  color: var(--accent-blue);
+}
+
+.impacted {
+  color: var(--impacted);
+}
+
+.caries {
+  color: var(--caries);
+}
+
+.deep-caries {
+  color: var(--deep-caries);
+}
+
+.periapical-lesion {
+  color: var(--periapical-lesion);
+}
+
+.content-container {
+  min-height: 15rem;
+  min-width: 320px;
+
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  background-color: white;
+}
+
+.text-lg {
+  font-size: 1.2rem;
+}
+
+.text-md {
+  font-size: 1rem;
+}
+
+.text-sm {
+  font-size: 0.8rem;
+}
+
+.caps {
+  text-transform: uppercase;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.spacer-sm {
+  height: 1rem;
+}
+
+.spacer-lg {
+  height: 2rem;
+}
+
+#action-text {
+  margin: 2em 0;
+  text-align: center;
+  color: var(--off-black);
+  font-size: 1.1em;
+}
+
+.instruction-text {
+  font-size: 0.7rem;
+  color: var(--off-black);
+  font-style: italic;
+}
+
+/*----------*/
+/*  HEADER  */
+/*----------*/
+
+#header-container {
+  width: 100vw;
+  min-width: 320px;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+
+  background-color: white;
+  color: var(--accent-blue);
+
+  padding: 0.9rem 0.6rem;
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.25); 
+}
+
+/*----------*/
+/*   HERO   */
+/*----------*/
+
+#hero-container {
+  height: 10rem;
+  width: 100vw;
+  min-width: 320px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+
+  background-image: url('../public/hero-photo.jpeg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+
+  /* Black filter over background image*/
+  box-shadow: inset 0px 0px 0 2000px rgba(0,0,0,0.5); 
+}
+
+/*----------*/
+/*  UPLOAD  */
+/*----------*/
+.card {
+  width: 12rem;
+  padding: 1rem;
+  min-width: 290px;
+
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 14px;
+  background: linear-gradient(291deg, #EBEBEB -5.82%, rgba(235, 235, 235, 0.00) 126.21%);
+  /* filter: drop-shadow(2px 10px 40px rgba(0, 0, 0, 0.15)); */
+
+  box-shadow: 2px 10px 40px rgba(0, 0, 0, 0.15);
+
+  font-size: 32px;
+}
+
+.card h3 {
+  color: var(--off-black);
+  font-size: 0.5em;
+}
+
+.card label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+#upload-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+  align-items: center;
+
+  border: 1px dashed #000;
+
+  cursor: pointer;
+}
+
+#upload-tooth-image {
+  margin-bottom: 0.5em;
+
+  width: 3em;
+  max-width: 500px;
+
+  background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+  mix-blend-mode: darken;
+
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+#upload-tooth-image:hover {
+  opacity: 1;
+}
+
+.file-input {
+  display: none;
+}
+
+#image-name {
+  text-align: center;
+  margin: 0.5em 0;
+}
+
+/*----------*/
+/*   XRAY   */
+/*----------*/
+
+#xray-container {
+  width: 100%;
+  margin: 2rem;
+  min-width: 320px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#xray-image {
+  width: 100%;
+}
+
+.bounding-box {
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+.bounding-box:hover {
+  opacity: 1;
+}
+
+
+
+/*--------------*/
+/*  CARD TABLE  */
+/*--------------*/
+
+.tooth-card-container {
+  line-height: 1rem;
+
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.tooth-card {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  min-width: 290px;
+
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 14px;
+  filter: drop-shadow(2px 10px 40px rgba(0, 0, 0, 0.15));
+
+  box-shadow: 2px 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+/*----------*/
+/*  FOOTER  */
+/*----------*/
+
+#footer-container {
+  min-width: 320px;
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  padding: 0.5rem 0 2rem 0;
+
+  color: white;
+  background-color: var(--off-black-darker);
+}
+
+.footer-column {
+  width: 14rem;
+  padding: 1rem;
+  text-align: center;
+  line-height: 1em;
+}
+.footer-column li {
+  list-style: none;
+}
+
+@media screen and (min-width: 641px) {
+  /* CSS rules for screens up to 768px wide (e.g., mobile) */
+  html {
+    font-size: 20px;
+  }
+
+  #footer-container {
+    flex-direction: row;
+    align-items: normal;
+  }
+
+  .footer-column {
+    text-align: left;
+  }
+  
+}
+
+/* CSS rules for screens between 769px and 1024px wide (e.g., tablet) */
+@media screen and (min-width: 769px){
+  html {
+    font-size: 24px;
+  }
+
+  .content-container {
+    width: 80vw;
+  }
+
+  .tooth-card-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* CSS rules for screens wider than 1024px (e.g., desktop) */
+@media screen and (min-width: 1025px) {
+  html {
+    font-size: 32px;
+  }
+}
