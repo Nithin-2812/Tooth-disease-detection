@@ -9,6 +9,7 @@ CORS(app, supports_credentials=True)
 
 def process_image(input_image):
     """Processes and returns the xray image"""
+    print("Inside Image")
     img = Image.open(input_image)
     return runPrediction(img)
 
@@ -29,4 +30,5 @@ def process_request():
     
 
 if __name__ == '__main__':
+    print("just before run")
     app.run()
