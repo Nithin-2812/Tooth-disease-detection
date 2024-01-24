@@ -1,0 +1,5 @@
+train: 'F:/TEETH_project/new sets to train/Batch2_ready_dataset/yolov8_1280-640_bal/images/train'
+val: 'F:/TEETH_project/new sets to train/Batch2_ready_dataset/yolov8_1280-640_bal/images/val'
+
+nc: 7
+names: ['Caries', 'Crown', 'Deep Caries', 'Impacted', 'Periapical Lesion', 'Rct', 'Restoration']

@@ -94,7 +94,7 @@ def generate_results(
     return results
 
 def runPrediction(input):
-    model_disease = YOLO('ML/models/Disease_Model_3.pt')
+    model_disease = YOLO('ML/models/Batch2_best.pt')
     results_disease = model_disease(input, imgsz=1280, conf=0.5)[0]
 
     model_enum = YOLO('ML/models/Enumeration_Model.pt')
