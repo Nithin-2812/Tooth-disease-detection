@@ -7,9 +7,9 @@ imgs =[]
 xmls =[]
 
 #setup dir names
-trainPath = 'F:/TEETH_project/new sets to train/Batch2_ready_dataset/yolov8_1280-640_bal/images/train'
-valPath = 'F:/TEETH_project/new sets to train/Batch2_ready_dataset/yolov8_1280-640_bal/images/val'
-crsPath = 'F:/TEETH_project/new sets to train/Batch2_ready_dataset/yolov8_1280-640_bal/Z_all/' #dir where images and annotations stored
+trainPath = 'F:/TEETH_project/new sets to train/Batch3_dataset/images/train'
+valPath = 'F:/TEETH_project/new sets to train/Batch3_dataset/images/val'
+crsPath = 'F:/TEETH_project/new sets to train/Batch3_dataset/Z_all/' #dir where images and annotations stored
 
 #setup ratio (val ratio = rest of the files in origin dir after splitting into train and test)
 train_ratio = 0.8
@@ -34,10 +34,10 @@ countForVal = int(len(imgs)*val_ratio)
 print("training images are : ",countForTrain)
 print("Validation images are : ",countForVal)
 
-trainimagePath = 'F:/TEETH_project/new sets to train/Batch2_ready_dataset/yolov8_1280-640_bal/images/train'
-trainlabelPath = 'F:/TEETH_project/new sets to train/Batch2_ready_dataset/yolov8_1280-640_bal/labels/train'
-valimagePath = 'F:/TEETH_project/new sets to train/Batch2_ready_dataset/yolov8_1280-640_bal/images/val'
-vallabelPath = 'F:/TEETH_project/new sets to train/Batch2_ready_dataset/yolov8_1280-640_bal/labels/val'
+trainimagePath = 'F:/TEETH_project/new sets to train/Batch3_dataset/images/train'
+trainlabelPath = 'F:/TEETH_project/new sets to train/Batch3_dataset/labels/train'
+valimagePath = 'F:/TEETH_project/new sets to train/Batch3_dataset/images/val'
+vallabelPath = 'F:/TEETH_project/new sets to train/Batch3_dataset/labels/val'
 #cycle for train dir
 for x in range(countForTrain):
 

@@ -25,17 +25,11 @@ def bb_intersection_over_union(boxA, boxB):
     return iou
 
 
-def generate_results(
-    image,
-    disease_result,
-    enum_result,
-    ):
 
-    # Names and labels for disease
+def generate_results(image, disease_result, enum_result):
     disease_names = disease_result.names
     disease_boxes = disease_result.boxes
 
-    # Names and labels for tooth numbers
     enum_names = enum_result.names
     enum_boxes = enum_result.boxes
 
@@ -45,9 +39,8 @@ def generate_results(
         'detections'      : []
     }
 
-    # List of tooth numbers that we want to actually show in detection
-    should_detect = []
-    disease_enum = {}
+    # Dictionary to store detected diseases for each tooth enumeration
+    tooth_disease_mapping = {}
 
     # For each diseased tooth, compute IOU against enumeration so we can classify it to a specific tooth number
     for box in disease_boxes:
@@ -59,42 +52,67 @@ def generate_results(
                 highest = val
                 highestIOU = box2
 
-        c, conf = int(highestIOU.cls), float(highestIOU.conf)
-        should_detect.append(enum_names[c])
+        if highestIOU is not None:  # Check if tooth number was detected
+            c, conf = int(highestIOU.cls), float(highestIOU.conf)
+            disease_name = disease_names[int(box.cls)]
+            tooth_num = str(enum_names[c])
+            iou = highest
 
-        disease_enum[c] = {
-            'disease' : disease_names[int(box.cls)],
-            'enum' : str(enum_names[c])
-        }
+            # Append disease detection to the list of diseases for this tooth enumeration
+            if tooth_num not in tooth_disease_mapping:
+                tooth_disease_mapping[tooth_num] = []
 
-        print("Matched " + disease_names[int(box.cls)] + " to " + str(enum_names[c]) + " with IOU " + str(highest))
-    
-    # Plot Detect results
-    for d in reversed(enum_boxes):
-        c, conf = int(d.cls), float(d.conf)
-        
-        # Skip labeling this tooth if there is no disease detection on it
-        if not (enum_names[c] in should_detect):
-            continue
-            
-        bbox_list = d.xywh.tolist()[0]
-
-        results['detections'].append({
-            'disease'   : disease_enum[c]['disease'],
-            'tooth'     : disease_enum[c]['enum'],
-            'confidence': conf,
-            'coordinates' : {
+            bbox_list = box.xywh.tolist()[0]
+            tooth_disease_mapping[tooth_num].append({
+                'disease': disease_name,
+                'confidence': conf,
+                'iou': iou,
+                'coordinates': {
                 'x'         : bbox_list[0],
                 'y'         : bbox_list[1],
                 'width'     : bbox_list[2],
                 'height'    : bbox_list[3]
-            }
-        })
+                }
+            })
+            print("Matched " + disease_name + " to " + enum_names[c] + " with IOU " + str(iou))
+        else:
+            disease_name = disease_names[int(box.cls)]
+            disease_confidence = float(box.conf)
+            print(f"No tooth number detected for diseased tooth with disease: {disease_name}")
+            # Store information about undetected tooth number
+            bbox_list = box.xywh.tolist()[0]
+            results['detections'].append({
+                'disease': disease_name,
+                'tooth': 'Not detected',
+                'confidence': disease_confidence,  # Store confidence of disease detection
+                'coordinates': {
+                'x'         : bbox_list[0],
+                'y'         : bbox_list[1],
+                'width'     : bbox_list[2],
+                'height'    : bbox_list[3]
+                }
+            })
+
+    # Populate the final results with all tooth enumeration detections and their associated diseases
+    for tooth_num, diseases in tooth_disease_mapping.items():
+        for disease_info in diseases:
+            results['detections'].append({
+                'disease': disease_info['disease'],
+                'tooth': tooth_num,
+                'confidence': disease_info['confidence'],
+                'iou': disease_info['iou'],
+                'coordinates': disease_info['coordinates']
+            })
+
+
+    #print(results['detections'])
 
     return results
 
+
+
 def runPrediction(input):
-    model_disease = YOLO('ML/models/Batch2_best.pt')
+    model_disease = YOLO('ML/models/Batch3_best.pt')
     results_disease = model_disease(input, imgsz=1280, conf=0.5)[0]
 
     model_enum = YOLO('ML/models/Enumeration_Model.pt')

@@ -1,3 +1,8 @@
+
+
+''' Input : folder in which both the json annotation files and there corresponding images are present
+    output : converted yolo annotation files which resides in yolo_output_folder'''
+
 import os
 import json
 from PIL import Image
@@ -36,8 +41,8 @@ def labelme_to_yolo(json_path, yolo_path, classes_file_path):
 
 if __name__ == "__main__":
     # Set the paths
-    labelme_json_folder = "F:\\TEETH_project\\new sets to train\\labelme\\Restorative jason" 
-    yolo_output_folder = "F:/TEETH_project/new sets to train/labelimg/Restoration" 
+    labelme_json_folder = "F:/TEETH_project/new sets to train/labelme/Implants json" 
+    yolo_output_folder = "F:/TEETH_project/new sets to train/labelimg/Implants" 
     classes_file_path = "F:/TEETH_project/labelmeTolabelimg/output/classes.txt"
 
     # Create a list to store class names
